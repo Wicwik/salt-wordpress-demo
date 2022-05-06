@@ -38,7 +38,7 @@ configure_php:
 
 service_php:
   service.running:
-    - name: pillar.get('php_version')-fpm
+    - name: php{{ pillar.get('php_version') }}-fpm
     - enable: True
     - require:
       - pkg: php_versions

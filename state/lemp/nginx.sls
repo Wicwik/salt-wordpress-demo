@@ -1,5 +1,5 @@
 {% for folder in ['web', 'sub', 'logs'] %}
-nginx_folder_structure_{{ domain }}/{{ folder }}:
+nginx_folder_structure_{{ pillar.get('domain') }}/{{ folder }}:
   file.directory:
     - name: /data/web/{{ pillar.get('domain') }}/{{ folder }}
     - user: {{ pillar.get('domain') }}

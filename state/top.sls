@@ -1,10 +1,10 @@
 base:
   '*':
     - common
-  'master'
+  'master':
     - haproxy
-  'node1'
+  'node1':
     - lemp
     - wordpress
-  'node2-db'
+  'node2-db':
     - db

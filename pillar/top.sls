@@ -1,6 +1,6 @@
 base:
   '*':
-  - lemp
-  - db
-  - domain
-  - server
+    - lemp
+    - db
+    - domain
+    - server

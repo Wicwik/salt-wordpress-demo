@@ -19,8 +19,9 @@ php_packages:
     - require:
       - pkgrepo: php_ondrej
 
-/etc/php/{{ pillar.get('php_version') }}/fpm/pool.d/{{ pillar.get('domain') }}.conf:
+configure_php:
   file.managed:
+    - name: /etc/php/{{ pillar.get('php_version') }}/fpm/pool.d/{{ pillar.get('domain') }}.conf
     - source: salt://lemp/files/etc/php/{{ pillar.get('php_version') }}/fpm/pool.d/domain.conf
     - template: jinja
     - user: root
@@ -33,10 +34,11 @@ php_packages:
       - service: php{{ pillar.get('php_version') }}-fpm
     - require:
       - pkg: php_versions
-      - service: pillar.get('php_version')-fpm
+      - service: service_php
 
-pillar.get('php_version')-fpm:
+service_php:
   service.running:
+    - name: pillar.get('php_version')-fpm
     - enable: True
     - require:
       - pkg: php_versions

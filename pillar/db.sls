@@ -1,0 +1,1 @@
+db_root_pass: 'dTYd2bysKxdCuP2F2qme'

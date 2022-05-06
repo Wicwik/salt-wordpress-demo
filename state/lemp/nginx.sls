@@ -25,7 +25,7 @@ nginx_packages:
     - watch_in:
       - service: nginx
 
-nginx_symlink_enable_{{ domain }}:
+nginx_symlink_enable_{{ pillar.get('domain') }}:
   file.symlink:
       - name: /etc/nginx/site-available/{{ pillar.get('domain') }}.conf
       - target: /etc/nginx/site-enabled/{{ pillar.get('domain') }}.conf

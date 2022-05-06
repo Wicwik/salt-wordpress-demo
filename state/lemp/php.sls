@@ -28,8 +28,6 @@ php_packages:
     - watch_in:
       - service: php{{ pillar.get('php_version') }}-fpm
 
-{% endfor %}
-
 pillar.get('php_version')-fpm:
   service.running:
     - enable: True

@@ -23,7 +23,7 @@ php_packages:
     - group: root
     - mode: 644
     - defaults:
-        domain: {{ domain }}
+        domain: {{ pillar.get('domain') }}
         php_version: {{ pillar.get('php_version') }}
     - watch_in:
       - service: php{{ pillar.get('php_version') }}-fpm

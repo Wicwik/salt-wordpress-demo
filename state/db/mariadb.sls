@@ -35,13 +35,21 @@ apparmor:
     - watch_in:
       - service: apparmor
 
+/etc/mysql:
+  file.recurse:
+    - source: salt://lemp/files/etc/mysql
+    - template: jinja
+    - require:
+      - pkg: mariadb_10_6_packages
+
+
 /root/.my.cnf:
   file.managed:
     - user: root
     - group: root
     - contents:
       - '[client]'
-      - host={{ pillar.get('server_db_ip') }}
+      - host=localhost
       - user=root
       - password={{ pillar.get('db_root_pass') }}
       - default-character-set=utf8

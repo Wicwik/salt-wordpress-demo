@@ -32,8 +32,6 @@ configure_php:
         php_version: {{ pillar.get('php_version') }}
     - watch_in:
       - service: php{{ pillar.get('php_version') }}-fpm
-    - require:
-      - service: service_php
 
 service_php:
   service.running:

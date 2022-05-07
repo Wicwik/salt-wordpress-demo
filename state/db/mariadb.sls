@@ -8,8 +8,8 @@ mariadb_10_3_debconf:
   debconf.set:
     - name: mysql-community-server
     - data: 
-        'mysql-server/root_password': {'type': 'password', 'value': '{{ pillar.get(db_root_pass) }}'}
-        'mysql-server/root_password_again': {'type': 'password', 'value': '{{ pillar.get(db_root_pass) }}'}
+        'mysql-server/root_password': {'type': 'password', 'value': {{ pillar.get('db_root_pass') }}}
+        'mysql-server/root_password_again': {'type': 'password', 'value': {{ pillar.get('db_root_pass') }}}
     - require:
       - pkg: debconf_packages
 
@@ -43,12 +43,12 @@ apparmor:
       - '[client]'
       - host=localhost
       - user=root
-      - password={{ pillar.get(db_root_pass) }}
+      - password={{ pillar.get('db_root_pass') }}
       - default-character-set=utf8
 
 /root/.mysqlpass:
   file.managed:
-    - contents: {{ pillar.get(db_root_pass) }}
+    - contents: {{ pillar.get('db_root_pass') }}
     - user: root
     - group: root
     - mode: 0600
@@ -64,7 +64,7 @@ wp_db:
     - name: {{ pillar.get(dbname) }}
     - connection_host: localhost
     - connection_user: root
-    - connection_pass: {{ pillar.get(db_root_pass) }}
+    - connection_pass: {{ pillar.get('db_root_pass') }}
     - require:
       - service: mariadb
 

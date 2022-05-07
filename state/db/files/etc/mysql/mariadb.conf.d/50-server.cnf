@@ -29,4 +29,3 @@ binlog_format                  = ROW
 [mariadb]
 
 [mariadb-10.6]
-1

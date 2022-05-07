@@ -61,7 +61,7 @@ mariadb:
 
 wp_db:
   mysql_database.present:
-    - name: {{ pillar.get(dbname) }}
+    - name: {{ pillar.get('dbname') }}
     - connection_host: localhost
     - connection_user: root
     - connection_pass: {{ pillar.get('db_root_pass') }}
@@ -70,8 +70,8 @@ wp_db:
 
 wp_user:
   mysql_user.present:
-    - name: {{ pillar.get(dbuser) }}
-    - password: {{ pillar.get(dbpass) }}
+    - name: {{ pillar.get('dbuser') }}
+    - password: {{ pillar.get('dbpass') }}
     - host: '%'
     - use:
       - mysql_database: wp_db

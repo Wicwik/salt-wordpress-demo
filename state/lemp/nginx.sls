@@ -41,8 +41,8 @@ nginx_packages:
 
 nginx_symlink_enable_{{ pillar.get('domain') }}:
   file.symlink:
-      - name: /etc/nginx/sites-available/{{ pillar.get('domain') }}.conf
-      - target: /etc/nginx/sites-enabled/{{ pillar.get('domain') }}.conf
+      - target: /etc/nginx/sites-available/{{ pillar.get('domain') }}.conf
+      - name: /etc/nginx/sites-enabled/{{ pillar.get('domain') }}.conf
       - require:
         - pkg: nginx_packages
       - watch_in:

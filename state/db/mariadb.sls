@@ -8,8 +8,8 @@ mariadb_10_3_debconf:
   debconf.set:
     - name: mysql-community-server
     - data: 
-        'mysql-server/root_password': {'type': 'password', 'value': '{{ pillar.get(db_root_pass)  }}'}
-        'mysql-server/root_password_again': {'type': 'password', 'value': '{{ pillar.get(db_root_pass)  }}'}
+        'mysql-server/root_password': {'type': 'password', 'value': '{{ pillar.get(db_root_pass) }}'}
+        'mysql-server/root_password_again': {'type': 'password', 'value': '{{ pillar.get(db_root_pass) }}'}
     - require:
       - pkg: debconf_packages
 

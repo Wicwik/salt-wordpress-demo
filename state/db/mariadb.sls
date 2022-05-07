@@ -37,7 +37,7 @@ apparmor:
 
 /etc/mysql:
   file.recurse:
-    - source: salt://lemp/files/etc/mysql
+    - source: salt://db/files/etc/mysql
     - template: jinja
     - require:
       - pkg: mariadb_10_6_packages

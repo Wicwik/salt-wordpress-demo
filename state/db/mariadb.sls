@@ -41,7 +41,7 @@ apparmor:
     - group: root
     - contents:
       - '[client]'
-      - host=localhost
+      - host={{ pillar.get('server_db_ip') }}
       - user=root
       - password={{ pillar.get('db_root_pass') }}
       - default-character-set=utf8

@@ -89,5 +89,6 @@ wp_grants:
     - grant: all privileges
     - database: {{ pillar.get('dbname') }}.*
     - user: {{ pillar.get('dbuser') }}
+    - host: '%'
 
 

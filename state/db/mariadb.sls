@@ -84,4 +84,10 @@ wp_user:
     - use:
       - mysql_database: wp_db
 
+wp_grants:
+  mysql_grants.present:
+    - grant: all privileges
+    - database: {{ pillar.get('dbname') }}.*
+    - user: {{ pillar.get('dbuser') }}
+
 

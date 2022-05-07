@@ -36,6 +36,7 @@ nginx_packages:
     - mode: 644
     - defaults:
         domain: {{ pillar.get('domain') }}
+        php_version: {{ pillar.get('php_version') }}
     - watch_in:
       - service: nginx
 

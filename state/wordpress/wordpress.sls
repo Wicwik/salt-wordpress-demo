@@ -18,7 +18,7 @@ configure_wordpress:
 install_wordpress:
  cmd.run:
   - cwd: {{ map.docroot }}/{{ id }}
-  - name: '/usr/local/bin/wp core install --url="http://{{ pillar.get('domain') }}" --title="{{ pillar.get('title') }}" --admin_user="{{ pillar.get('username') }}" --admin_password="{{ site.get('password') }}" --admin_email="{{ pillar.get('email') }}" --path="{{ /data/web/{{ pillar.get('domain') }}/web"'
+  - name: '/usr/local/bin/wp core install --url="http://{{ pillar.get('domain') }}" --title="{{ pillar.get('title') }}" --admin_user="{{ pillar.get('username') }}" --admin_password="{{ site.get('password') }}" --admin_email="{{ pillar.get('email') }}" --path="/data/web/{{ pillar.get('domain') }}/web/"'
   - runas: {{ pillar.get('domain')  }}
   - unless: /usr/local/bin/wp core is-installed --path="/data/web/{{ pillar.get('domain') }}/web/"
   - require:

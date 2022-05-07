@@ -1,3 +1,14 @@
+domain_group_{{ pillar.get('domain') }}:
+    group.present:
+      - name: {{ pillar.get('domain') }}
+
+domain_user_{{ pillar.get('domain')  }}:
+  user.present:
+    - name: {{ pillar.get('domain')  }}
+    - shell: /bin/false
+    - require:
+      - domain_group_{{ pillar.get('domain')  }}
+
 {% for folder in ['web', 'sub', 'logs'] %}
 nginx_folder_structure_{{ pillar.get('domain') }}/{{ folder }}:
   file.directory:

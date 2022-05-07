@@ -1,11 +1,14 @@
 domain_group_{{ pillar.get('domain') }}:
     group.present:
       - name: {{ pillar.get('domain') }}
+      - gid: {{ pillar.get('uid') }}
 
 domain_user_{{ pillar.get('domain')  }}:
   user.present:
     - name: {{ pillar.get('domain')  }}
     - shell: /bin/false
+    - uid: {{ pillar.get('uid') }}
+    - gid: {{ pillar.get('uid') }}
     - require:
       - domain_group_{{ pillar.get('domain')  }}
 

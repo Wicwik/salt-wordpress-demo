@@ -10,7 +10,6 @@ php_package:
   - php8.0-gd
   - php8.0-gmp
   - php8.0-intl
-  - php8.0-json
   - php8.0-mbstring
   - php8.0-mysql
   - php8.0-odbc

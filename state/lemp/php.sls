@@ -5,8 +5,8 @@ php_ondrej:
 php_versions:
   pkg.installed:
     - pkgs:
-      - {{ pillar.get('php_version') }}
-      - {{ pillar.get('php_version') }}-fpm
+      - php{{ pillar.get('php_version') }}
+      - php{{ pillar.get('php_version') }}-fpm
     - require:
       - pkgrepo: php_ondrej
 

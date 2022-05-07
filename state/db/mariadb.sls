@@ -87,8 +87,11 @@ wp_user:
 wp_grants:
   mysql_grants.present:
     - grant: all privileges
-    - database: {{ pillar.get('dbname') }}.*
+    - database: '*.*'
     - user: {{ pillar.get('dbuser') }}
     - host: '%'
 
-
+flush_privileges:
+  mysql_query.run:
+    - database: mysql
+    - query: FLUSH PRIVILEGES;

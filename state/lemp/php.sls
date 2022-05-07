@@ -33,7 +33,6 @@ configure_php:
     - watch_in:
       - service: php{{ pillar.get('php_version') }}-fpm
     - require:
-      - pkg: php_versions
       - service: service_php
 
 service_php:

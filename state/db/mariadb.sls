@@ -90,8 +90,12 @@ wp_grants:
     - database: '*.*'
     - user: {{ pillar.get('dbuser') }}
     - host: '%'
+    - use:
+      - mysql_database: wp_db
 
 flush_privileges:
   mysql_query.run:
     - database: mysql
     - query: FLUSH PRIVILEGES;
+    - use:
+      - mysql_database: wp_db

@@ -69,7 +69,7 @@ mariadb:
 
 wp_db:
   mysql_database.present:
-    - name: {{ pillar.get('dbname') }}
+    - name: {{ pillar.get('database') }}
     - connection_host: localhost
     - connection_user: root
     - connection_pass: {{ pillar.get('db_root_pass') }}

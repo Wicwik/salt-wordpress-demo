@@ -1,3 +1,11 @@
+mariadb_10_6_packages:
+  pkg.installed:
+    - pkgs:
+      - mariadb-client-10.6
+      - libmysqlclient-dev
+      - python3-mysqldb
+    - refresh: True
+
 download_wordpress:
  cmd.run:
   - cwd: /data/web/{{ pillar.get('domain') }}/web/
@@ -14,12 +22,13 @@ configure_wordpress:
   - runas: {{ pillar.get('domain') }}
   - require:
     - file: download_wp_cli
+    - pkg: mariadb_10_6_packages
 
 install_wordpress:
  cmd.run:
   - cwd: /data/web/{{ pillar.get('domain') }}/web/
   - name: '/usr/local/bin/wp core install --url="http://{{ pillar.get('domain') }}" --title="{{ pillar.get('title') }}" --admin_user="{{ pillar.get('username') }}" --admin_password="{{ pillar.get('password') }}" --admin_email="{{ pillar.get('email') }}" --path="/data/web/{{ pillar.get('domain') }}/web/"'
-  - runas: {{ pillar.get('domain')  }}
+  - runas: {{ pillar.get('domain') }}
   - unless: /usr/local/bin/wp core is-installed --path="/data/web/{{ pillar.get('domain') }}/web/"
   - require:
     - file: configure_wordpress

@@ -1,0 +1,45 @@
+--- /usr/lib/python3/dist-packages/salt/modules/aptpkg.py.orig  2022-05-04 18:45:18.181727709 -0700
++++ /usr/lib/python3/dist-packages/salt/modules/aptpkg.py       2022-05-04 19:31:25.042603741 -0700
+@@ -1847,9 +1847,11 @@
+             if HAS_SOFTWAREPROPERTIES:
+                 try:
+                     if hasattr(softwareproperties.ppa, "PPAShortcutHandler"):
+-                        repo = softwareproperties.ppa.PPAShortcutHandler(repo).expand(
+-                            dist
+-                        )[0]
++                        handler = softwareproperties.ppa.PPAShortcutHandler(repo)
++                        if hasattr(handler, "expand"):
++                            repo = handler.expand(dist)[0]
++                        else:
++                            repo = handler.SourceEntry().line
+                     else:
+                         repo = softwareproperties.ppa.expand_ppa_line(repo, dist)[0]
+                 except NameError as name_error:
+@@ -1930,7 +1932,11 @@
+                 repo = LP_SRC_FORMAT.format(owner_name, ppa_name, dist)
+         else:
+             if hasattr(softwareproperties.ppa, "PPAShortcutHandler"):
+-                repo = softwareproperties.ppa.PPAShortcutHandler(repo).expand(dist)[0]
++                handler = softwareproperties.ppa.PPAShortcutHandler(repo)
++                if hasattr(handler, "expand"):
++                    repo = handler.expand(dist)[0]
++                else:
++                    repo = handler.SourceEntry().line
+             else:
+                 repo = softwareproperties.ppa.expand_ppa_line(repo, dist)[0]
+
+@@ -2657,9 +2663,11 @@
+         else:
+             if HAS_SOFTWAREPROPERTIES:
+                 if hasattr(softwareproperties.ppa, "PPAShortcutHandler"):
+-                    repo = softwareproperties.ppa.PPAShortcutHandler(repo).expand(dist)[
+-                        0
+-                    ]
++                    handler = softwareproperties.ppa.PPAShortcutHandler(repo)
++                    if hasattr(handler, "expand"):
++                        repo = handler.expand(dist)[0]
++                    else:
++                        repo = handler.SourceEntry().line
+                 else:
+                     repo = softwareproperties.ppa.expand_ppa_line(repo, dist)[0]
+             else:

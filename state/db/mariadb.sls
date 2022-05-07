@@ -4,7 +4,7 @@ debconf_packages:
       - debconf
       - debconf-utils
 
-mariadb_10_3_debconf:
+mariadb_10_6_debconf:
   debconf.set:
     - name: mysql-community-server
     - data: 
@@ -13,17 +13,17 @@ mariadb_10_3_debconf:
     - require:
       - pkg: debconf_packages
 
-mariadb_10_3_packages:
+mariadb_10_6_packages:
   pkg.installed:
     - pkgs:
       - mariadb-common
-      - mariadb-client-10.3
-      - mariadb-server-10.3
+      - mariadb-client-10.6
+      - mariadb-server-10.6
       - libmysqlclient-dev
       - python3-mysqldb
     - refresh: True
     - require:
-      - debconf: mariadb_10_3_debconf
+      - debconf: mariadb_10_6_debconf
 
 apparmor:
   service.running:
@@ -57,7 +57,7 @@ mariadb:
   service.running:
     - enable: True
     - require:
-      - pkg: mariadb_10_3_packages
+      - pkg: mariadb_10_6_packages
 
 wp_db:
   mysql_database.present:

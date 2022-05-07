@@ -4,3 +4,4 @@ base:
     - db
     - domain
     - server
+    - wordpress

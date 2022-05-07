@@ -1,0 +1,3 @@
+include:
+  - .wordpress
+  - .wp-cli
